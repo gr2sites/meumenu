@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reino das Coxinhas - App de Pedidos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🥟</span>
+                    <h1>Reino das Coxinhas</h1>
+                </div>
+                <div class="cart-icon" id="cartIcon">
+                    <span class="cart-count" id="cartCount">0</span>
+                    🛒
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section id="homePage" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2>As Melhores Coxinhas da Região</h2>
+                    <p>Coxinhas artesanais, recheadas com ingredientes premium e preparadas com amor.</p>
+                    <button class="btn btn-primary" onclick="showPage('menuPage')">Fazer Pedido Agora</button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663281925867/PU7LEe9n6tL2TwSc7gvEBY/hero-coxinhas-BdefF5TuD7Nzv5FyLKQu57.webp" alt="Coxinhas">
+                </div>
+            </div>
+
+            <section class="features">
+                <div class="container">
+                    <h3>Por Que Escolher a Gente?</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <span class="feature-icon">⭐</span>
+                            <h4>Ingredientes Premium</h4>
+                            <p>Utilizamos apenas ingredientes de alta qualidade para garantir o melhor sabor.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🚚</span>
+                            <h4>Entrega Rápida</h4>
+                            <p>Entregamos seus pedidos quentinhos e frescos em até 30 minutos.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">⏰</span>
+                            <h4>Atendimento 24h</h4>
+                            <p>Peça suas coxinhas a qualquer hora do dia ou da noite.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="categories">
+                <div class="container">
+                    <h3>Nossas Categorias</h3>
+                    <div class="categories-grid">
+                        <div class="category-card" onclick="filterCategory('tradicionais'); showPage('menuPage')">
+                            <span class="category-emoji">🥟</span>
+                            <p>Tradicionais</p>
+                        </div>
+                        <div class="category-card" onclick="filterCategory('gourmet'); showPage('menuPage')">
+                            <span class="category-emoji">👑</span>
+                            <p>Gourmet</p>
+                        </div>
+                        <div class="category-card" onclick="filterCategory('doces'); showPage('menuPage')">
+                            <span class="category-emoji">🍫</span>
+                            <p>Doces</p>
+                        </div>
+                        <div class="category-card" onclick="filterCategory('mini'); showPage('menuPage')">
+                            <span class="category-emoji">✨</span>
+                            <p>Mini Coxinhas</p>
+                        </div>
+                        <div class="category-card" onclick="filterCategory('bebidas'); showPage('menuPage')">
+                            <span class="category-emoji">🥤</span>
+                            <p>Bebidas</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta">
+                <div class="container">
+                    <h3>Pronto para Pedir?</h3>
+                    <p>Faça seu pedido agora e aproveite as melhores coxinhas da região!</p>
+                    <button class="btn btn-primary" onclick="showPage('menuPage')">Ir para o Cardápio</button>
+                </div>
+            </section>
+        </section>
+
+        <!-- Menu Page -->
+        <section id="menuPage" class="page">
+            <div class="container">
+                <div class="menu-header">
+                    <button class="btn-back" onclick="showPage('homePage')">← Voltar</button>
+                    <h2>Cardápio</h2>
+                    <div></div>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Buscar coxinhas..." onkeyup="searchProducts()">
+                </div>
+
+                <div class="categories-filter">
+                    <button class="filter-btn active" onclick="filterCategory('todos'); renderProducts()">Todos</button>
+                    <button class="filter-btn" onclick="filterCategory('tradicionais'); renderProducts()">Tradicionais</button>
+                    <button class="filter-btn" onclick="filterCategory('gourmet'); renderProducts()">Gourmet</button>
+                    <button class="filter-btn" onclick="filterCategory('doces'); renderProducts()">Doces</button>
+                    <button class="filter-btn" onclick="filterCategory('mini'); renderProducts()">Mini</button>
+                    <button class="filter-btn" onclick="filterCategory('bebidas'); renderProducts()">Bebidas</button>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Produtos serão inseridos aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Modal -->
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal()">✕</button>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Produto" class="modal-image">
+                    <div class="modal-info">
+                        <h3 id="modalTitle"></h3>
+                        <p id="modalDescription"></p>
+                        
+                        <div class="modal-section">
+                            <label>Tamanho:</label>
+                            <div class="size-options" id="sizeOptions"></div>
+                        </div>
+
+                        <div class="modal-section">
+                            <label>Quantidade:</label>
+                            <div class="quantity-control">
+                                <button onclick="decreaseQuantity()">−</button>
+                                <input type="number" id="quantity" value="1" min="1" max="99">
+                                <button onclick="increaseQuantity()">+</button>
+                            </div>
+                        </div>
+
+                        <div class="modal-section">
+                            <label>Adicionais:</label>
+                            <div class="addons-list" id="addonsList"></div>
+                        </div>
+
+                        <div class="modal-price">
+                            <span>Total:</span>
+                            <span id="modalPrice" class="price">R$ 0,00</span>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" onclick="addToCart()">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Page -->
+        <section id="cartPage" class="page">
+            <div class="container">
+                <div class="menu-header">
+                    <button class="btn-back" onclick="showPage('menuPage')">← Voltar</button>
+                    <h2>Seu Carrinho</h2>
+                    <div></div>
+                </div>
+
+                <div class="cart-content">
+                    <div class="cart-items" id="cartItems">
+                        <!-- Itens do carrinho serão inseridos aqui -->
+                    </div>
+
+                    <div class="cart-summary">
+                        <h3>Resumo do Pedido</h3>
+                        <div class="summary-items" id="summaryItems"></div>
+                        <div class="summary-total">
+                            <span>Total:</span>
+                            <span id="totalPrice" class="price">R$ 0,00</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="showPage('checkoutPage')">Ir para Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkoutPage" class="page">
+            <div class="container">
+                <div class="menu-header">
+                    <button class="btn-back" onclick="showPage('cartPage')">← Voltar</button>
+                    <h2>Checkout</h2>
+                    <div></div>
+                </div>
+
+                <div class="checkout-content">
+                    <form id="checkoutForm" onsubmit="submitOrder(event)">
+                        <div class="form-section">
+                            <h3>Dados Pessoais</h3>
+                            <div class="form-group">
+                                <label for="name">Nome *</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefone *</label>
+                                <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Endereço de Entrega</h3>
+                            <div class="form-group">
+                                <label for="address">Rua e Número</label>
+                                <input type="text" id="address">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">Cidade</label>
+                                    <input type="text" id="city">
+                                </div>
+                                <div class="form-group">
+                                    <label for="zipcode">CEP</label>
+                                    <input type="text" id="zipcode" placeholder="00000-000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Opções de Entrega</h3>
+                            <div class="form-group">
+                                <label for="deliveryMethod">Tipo de Entrega</label>
+                                <select id="deliveryMethod">
+                                    <option value="entrega">Entrega</option>
+                                    <option value="retirada">Retirada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentMethod">Forma de Pagamento</label>
+                                <select id="paymentMethod">
+                                    <option value="dinheiro">Dinheiro</option>
+                                    <option value="cartao">Cartão de Crédito</option>
+                                    <option value="pix">PIX</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Resumo do Pedido</h3>
+                            <div class="checkout-summary" id="checkoutSummary"></div>
+                            <div class="checkout-total">
+                                <span>Total:</span>
+                                <span id="checkoutTotal" class="price">R$ 0,00</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full btn-large">Finalizar Pedido</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Reino das Coxinhas. Todos os direitos reservados.</p>
+            <p>Contato: (11) 99999-9999 | contato@reinodascoxinhas.com</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
