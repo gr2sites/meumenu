@@ -6,7 +6,7 @@ const products = [
         name: 'Coxinha de Frango Clássica',
         description: 'Clássica coxinha recheada com frango desfiado e cremosa',
         category: 'tradicionais',
-        image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663281925867/PU7LEe9n6tL2TwSc7gvEBY/coxinhas-tradicionais-BdefF5TuD7Nzv5FyLKQu57.webp',
+        image: "imagens/tradicional.png",
         sizes: [
             { name: 'Pequena', price: 8.50 },
             { name: 'Grande', price: 12.00 }
@@ -21,7 +21,7 @@ const products = [
         name: 'Coxinha de Carne',
         description: 'Coxinha com carne moída temperada e suculenta',
         category: 'tradicionais',
-        image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663281925867/PU7LEe9n6tL2TwSc7gvEBY/coxinhas-tradicionais-BdefF5TuD7Nzv5FyLKQu57.webp',
+        image: "imagens/carnemoida.png",
         sizes: [
             { name: 'Pequena', price: 9.00 },
             { name: 'Grande', price: 13.00 }
@@ -36,7 +36,7 @@ const products = [
         name: 'Coxinha de Queijo',
         description: 'Coxinha com queijo derretido e cremoso',
         category: 'tradicionais',
-        image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663281925867/PU7LEe9n6tL2TwSc7gvEBY/coxinhas-tradicionais-BdefF5TuD7Nzv5FyLKQu57.webp',
+        image: "imagens/queijo.png",
         sizes: [
             { name: 'Pequena', price: 7.50 },
             { name: 'Grande', price: 11.00 }
