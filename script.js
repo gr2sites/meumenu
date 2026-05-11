@@ -51,7 +51,7 @@ const products = [
         name: 'Coxinha de Camarão',
         description: 'Camarão fresco com cream cheese e temperos especiais',
         category: 'gourmet',
-        image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663281925867/PU7LEe9n6tL2TwSc7gvEBY/coxinhas-gourmet-BdefF5TuD7Nzv5FyLKQu57.webp',
+        image: "imagens/camarão.png",
         sizes: [
             { name: 'Pequena', price: 14.00 },
             { name: 'Grande', price: 18.00 }
@@ -65,7 +65,7 @@ const products = [
         name: 'Coxinha de Carne com Trufa',
         description: 'Carne premium com azeite de trufa e cogumelos',
         category: 'gourmet',
-        image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663281925867/PU7LEe9n6tL2TwSc7gvEBY/coxinhas-gourmet-BdefF5TuD7Nzv5FyLKQu57.webp',
+        image: "imagens/camarao-cogumelo.png",
         sizes: [
             { name: 'Pequena', price: 15.50 },
             { name: 'Grande', price: 19.50 }
